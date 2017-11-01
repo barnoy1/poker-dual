@@ -1,0 +1,85 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        maven {
+            url 'https://maven.google.com'
+            name 'Google'
+        }
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+// Define versions in a single place
+ext {
+    // Sdk and tools
+    minSdkVersion = 16
+    targetSdkVersion = 28
+    compileSdkVersion = 28
+    buildToolsVersion = '28.0.3'
+
+    // App dependencies
+    supportLibraryVersion = '28.0.0'
+    gsonVersion = '2.8.5'
+    calligraphyVersion = '2.2.0'
+    glideVersion = '3.7.0'
+    JsonParser='1.1'
+
+    rx2FastAndroidNetworking = '1.0.1'
+
+    dagger2Version = '2.22.1'
+    rxjava2Version = '2.0.6'
+    rxandroidVersion = '2.0.1'
+    butterKnifeVersion = '8.6.0'
+    greenDaoVersion = '3.2.0'
+    placeholderviewVersion = '0.6.1'
+    debugDBVersion = '1.0.3'
+    timberVersion = '4.5.1'
+
+    //Test dependencies
+    junitVersion = '4.12'
+    espressoVersion = '2.2.2'
+    mockitoVersion = '2.7.1'
+
+    //Firebase
+    playServicesAdsVersion = '17.1.3'
+    playServicesAuthVersion = '16.0.1'
+    firebaseCoreVersion = '16.0.8'
+    firebaseAuthVersion = '16.2.1'
+    firebaseClientAndroidVersion = '2.5.2'
+    firebaseAdsVersion = '17.2.0'
+    firebaseDataBaseVersion = '16.1.0'
+    firebaseStorageVersion = '16.1.0'
+
+    // Facebook sdk
+    facebookLoginVersion = '4.33.0'
+
+    // multi dex support
+    multiDexSupportVersion = '1.0.3'
+
+}

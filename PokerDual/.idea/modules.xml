@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PokerDual.iml" filepath="$PROJECT_DIR$/PokerDual.iml" group="PokerDual" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PokerDual-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PokerDual-app.iml" group="PokerDual/app" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="PokerDual/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/poker-dual-PokerDual.iml" filepath="$PROJECT_DIR$/.idea/modules/poker-dual-PokerDual.iml" group="PokerDual" />
+    </modules>
+  </component>
+</project>
