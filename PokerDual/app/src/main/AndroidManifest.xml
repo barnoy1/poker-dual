@@ -60,8 +60,17 @@
             </intent-filter>
         </activity>
 
+        <!-- Main Activity -->
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.VIEW"/>
+            </intent-filter>
+        </activity>
 
-        <!-- scoreboard Activity -->
+        <!-- Store Activity -->
         <activity
             android:name=".ui.store.StoreActivity"
             android:screenOrientation="portrait">

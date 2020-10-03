@@ -1,16 +1,23 @@
 package com.game.pokerdual.ui.login;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 
 import com.firebase.authwrapper.providers.common.callbacks.AuthenticationListener;
 import com.game.pokerdual.R;
 import com.game.pokerdual.ui.base.BaseActivity;
+import com.game.pokerdual.ui.main.MainActivity;
 import com.game.pokerdual.utils.AppLogger;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -23,8 +30,7 @@ import butterknife.OnClick;
  * Created by ron on 10/1/2018.
  */
 
-public class LoginActivity extends BaseActivity implements LoginMvpView,
-        AuthenticationListener {
+public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
 
@@ -75,11 +81,11 @@ public class LoginActivity extends BaseActivity implements LoginMvpView,
 
     @Override
     public void openMainActivity() {
-        /*
+
         Intent intent = MainActivity.getStartIntent(LoginActivity.this);
         startActivity(intent);
         finish();
-        */
+
     }
 
     @Override
@@ -96,29 +102,65 @@ public class LoginActivity extends BaseActivity implements LoginMvpView,
     @Override
     public void OnAuthenticationComplete(FirebaseUser firebaseUser) {
 
-
-
         //TODO
         // this callback fire twice (on for signout all providers.
         // need to add in the library that it will not be triggered
         // if user is null.
+        if (firebaseUser == null)
+            return;
 
-        if (firebaseUser != null)
-        {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("What's your name?");
 
-            String message = String.format(
-                    "name=%s,\temail=%s,\tuid=%s",
-                    firebaseUser.getDisplayName(),
-                    firebaseUser.getEmail(),
-                    firebaseUser.getUid());
+        // Set up the input
+        final EditText input = new EditText(this);
 
-            showSnackBarMessage(message);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
 
-            AppLogger.i(message);
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-            mEmailEditText.setText(firebaseUser.getEmail());
-            mPasswordEditText.setText(firebaseUser.getUid());
-        }
+                if (Objects.requireNonNull(firebaseUser.getDisplayName()).isEmpty() ||
+                        firebaseUser.getDisplayName().equals("Guest")) {
+
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName( input.getText().toString() ).build();
+
+                    firebaseUser.updateProfile(profileUpdates);
+
+                    String message = "hello, " + firebaseUser.getDisplayName();
+                    showSnackBarMessage(message);
+                    AppLogger.i(message);
+
+                    mEmailEditText.setText(firebaseUser.getEmail());
+                    mPasswordEditText.setText(firebaseUser.getUid());
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName( getStringByID(R.string.anonymous_user)  ).build();
+
+                firebaseUser.updateProfile(profileUpdates);
+
+                String message = "hello, " + firebaseUser.getDisplayName();
+                showSnackBarMessage(message);
+                AppLogger.i(message);
+
+                mEmailEditText.setText(firebaseUser.getEmail());
+                mPasswordEditText.setText(firebaseUser.getUid());
+
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     @Override

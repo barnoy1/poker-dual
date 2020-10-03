@@ -25,8 +25,6 @@ public interface SplashMvpView extends MvpView {
 
   void openLoginActivity();
 
-  void openMainActivity();
-
   void updateTextViewProgressBar(String value);
 
   void updateProgressBar(long value);

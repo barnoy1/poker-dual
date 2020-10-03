@@ -60,6 +60,12 @@ public class StoreActivity extends BaseActivity implements StoreMvpView {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        mPresenter.onDetach();
+        super.onDestroy();
+    }
+
     private void downloadFile() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl("gs://pokerdual-77546.appspot.com/store_items");

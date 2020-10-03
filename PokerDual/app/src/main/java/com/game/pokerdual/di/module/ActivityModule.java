@@ -11,6 +11,8 @@ import com.game.pokerdual.di.PerActivity;
 import com.game.pokerdual.ui.login.LoginMvpPresenter;
 import com.game.pokerdual.ui.login.LoginMvpView;
 import com.game.pokerdual.ui.login.LoginPresenter;
+import com.game.pokerdual.ui.main.MainMvpPresenter;
+import com.game.pokerdual.ui.main.MainMvpView;
 import com.game.pokerdual.ui.splash.SplashMvpPresenter;
 import com.game.pokerdual.ui.splash.SplashMvpView;
 import com.game.pokerdual.ui.splash.SplashPresenter;
@@ -89,6 +91,14 @@ public class ActivityModule {
     @PerActivity
     StoreMvpPresenter<StoreMvpView> provideStorePresenter(
             StorePresenter<StoreMvpView> presenter) {
+        return presenter;
+    }
+
+
+    @Provides
+    @PerActivity
+    MainMvpPresenter<MainMvpView> provideMainMvpPresenter(
+            MainMvpPresenter<MainMvpView> presenter) {
         return presenter;
     }
 

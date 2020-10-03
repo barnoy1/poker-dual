@@ -13,6 +13,7 @@ import com.game.pokerdual.utils.AssetLoader.AssetLoadManager;
 import com.game.pokerdual.utils.CommonUtils;
 import com.game.pokerdual.utils.rx.SchedulerProvider;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import javax.inject.Inject;
 
@@ -24,8 +25,6 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
         implements LoginMvpPresenter<V> {
-
-    private final static String TAG = SplashPresenter.class.getSimpleName();
 
     @Inject
     public ProviderManager mProviderManager;
@@ -63,6 +62,7 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
             IProvider provider = mProviderManager
                     .getProvider(ProviderType.MAIL);
 
+
             provider.SignIn(email, password, new
                     AuthenticationListener.Email() {
 
@@ -73,26 +73,32 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V>
 
                         @Override
                         public void OnVerficationMailSent() {
-                            String message = String.format("verification email was sent to " +
-                                    "your mail address");
-
-                            getMvpView().showSnackBarMessage(message);
-                            AppLogger.i(message);
+                            int stringId = R.string.email_sent_verifcation_mail;
+                            getMvpView().showSnackBarMessage(stringId);
+                            AppLogger.i( getMvpView().getStringByID(stringId) );
                         }
 
                         @Override
                         public void OnAccountAlreadyExistsError() {
-                            String message = String.format("account already found in database");
-                            getMvpView().showSnackBarMessage(message);
-                            AppLogger.i(message);
+                            int stringId = R.string.email_account_already_exists_exception;
+                            getMvpView().showSnackBarMessage(stringId);
+                            AppLogger.i( getMvpView().getStringByID(stringId) );
                         }
 
                         @Override
                         public void OnEmailSignIn(FirebaseUser firebaseUser) {
 
+                            if (firebaseUser.isEmailVerified()){
 
-                            String message = "Current user verification status: " +
-                                    firebaseUser.isEmailVerified();
+                                int stringId = R.string.email_authentication_completed;
+                                getMvpView().showSnackBarMessage(stringId);
+                                AppLogger.i( getMvpView().getStringByID(stringId)  );
+
+                                getMvpView().OnAuthenticationComplete(firebaseUser);
+                                return;
+                            }
+                            String message = String.format("User %s is not authorized, please complete the " +
+                                    "verification from sent to your address", firebaseUser.getDisplayName() );
                             getMvpView().showSnackBarMessage(message);
                             AppLogger.i(message);
                         }
