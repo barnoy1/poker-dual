@@ -26,9 +26,9 @@ import com.game.pokerdual.R;
  * Created by janisharali on 24/05/17.
  */
 
-public final class AppUtils {
+public final class ActivityUtils {
 
-    private AppUtils() {
+    private ActivityUtils() {
         // This class is not publicly instantiable
     }
 

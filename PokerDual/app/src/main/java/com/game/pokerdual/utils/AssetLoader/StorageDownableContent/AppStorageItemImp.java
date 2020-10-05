@@ -14,10 +14,10 @@ import io.reactivex.functions.Consumer;
 /**
  * The type App downable storage item.
  */
-public class AppStorageItem implements StorageItem {
+public class AppStorageItemImp implements StorageItem {
 
 
-    private static final String TAG = AppStorageItem.class.getSimpleName();
+    private static final String TAG = AppStorageItemImp.class.getSimpleName();
     private Consumer<? super FileDownloadTask.TaskSnapshot> onNext;
     private Consumer<? super Exception> onError;
     private Consumer<? super Pair<String, File>> onComplete;
@@ -30,7 +30,7 @@ public class AppStorageItem implements StorageItem {
      *
      * @param storageItemProperties the downable storage item properties
      */
-    public AppStorageItem(StorageItemProperties storageItemProperties) {
+    public AppStorageItemImp(StorageItemProperties storageItemProperties) {
         this.url = storageItemProperties.url;
         this.relPath = storageItemProperties.relPath;
 
@@ -56,7 +56,7 @@ public class AppStorageItem implements StorageItem {
             fileRef.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
 
                 try {
-                    AppStorageItem.this.onComplete.accept(new Pair<>(relPath, localFile));
+                    AppStorageItemImp.this.onComplete.accept(new Pair<>(relPath, localFile));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -64,7 +64,7 @@ public class AppStorageItem implements StorageItem {
             }).addOnFailureListener(exception -> {
 
                 try {
-                    AppStorageItem.this.onError.accept(exception);
+                    AppStorageItemImp.this.onError.accept(exception);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -72,7 +72,7 @@ public class AppStorageItem implements StorageItem {
             }).addOnProgressListener(taskSnapshot -> {
 
                 try {
-                    AppStorageItem.this.onNext.accept(taskSnapshot);
+                    AppStorageItemImp.this.onNext.accept(taskSnapshot);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

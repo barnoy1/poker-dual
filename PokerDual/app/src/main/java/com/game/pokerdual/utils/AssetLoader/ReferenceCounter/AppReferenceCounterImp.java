@@ -1,6 +1,6 @@
 package com.game.pokerdual.utils.AssetLoader.ReferenceCounter;
 
-public class AppReferenceCounter implements ReferenceCounter {
+public class AppReferenceCounterImp implements ReferenceCounter {
 
     private int mRefCounter;
 

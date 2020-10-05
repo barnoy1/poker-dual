@@ -4,18 +4,26 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.firebase.authwrapper.providers.common.callbacks.AuthenticationListener;
 import com.game.pokerdual.R;
 import com.game.pokerdual.ui.base.BaseActivity;
 import com.game.pokerdual.ui.main.MainActivity;
-import com.game.pokerdual.utils.AppLogger;
+import com.game.pokerdual.utils.Logger;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+
+import org.w3c.dom.Notation;
+import org.w3c.dom.Text;
 
 import java.util.Objects;
 
@@ -99,6 +107,60 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     }
 
+
+    @Override
+    public void CreateDisplayNameDialogBox(FirebaseUser firebaseUser) {
+
+        // get prompts.xml view
+        LayoutInflater li = LayoutInflater.from(this);
+        View promptsView = li.inflate(R.layout.prompts, null);
+        promptsView.setAlpha(0.6f);
+
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this, R.style.CustomAlertDialog);
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        Objects.requireNonNull(alertDialog.getWindow())
+                .setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setView(promptsView);
+
+
+        final TextView title = (TextView) promptsView
+                 .findViewById(R.id.titleTextDialogUserInput);
+        title.setText(R.string.dialog_display_name_title);
+
+        final EditText userInput = (EditText) promptsView
+                .findViewById(R.id.editTextDialogUserInput);
+
+        final Button btnOk = (Button) promptsView
+                .findViewById(R.id.dialogButtonOK);
+
+        // set the custom dialog components - text, image and button
+        ImageView image = (ImageView) promptsView.findViewById(R.id.DialogBoxImage);
+        image.setImageResource(R.drawable.user);
+
+        // Set up the buttons
+        btnOk.setOnClickListener(view -> {
+            mPresenter.UpdateUserDisplayName(firebaseUser, userInput.getText().toString());
+            greetUser(firebaseUser);
+            openMainActivity();
+        });
+
+        alertDialogBuilder.show();
+    }
+
+    @Override
+    public void greetUser(FirebaseUser firebaseUser) {
+
+        String message = "hello, " + firebaseUser.getDisplayName();
+        showSnackBarMessage(message);
+        Logger.i(message);
+    }
+
     @Override
     public void OnAuthenticationComplete(FirebaseUser firebaseUser) {
 
@@ -109,65 +171,25 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
         if (firebaseUser == null)
             return;
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("What's your name?");
 
-        // Set up the input
-        final EditText input = new EditText(this);
+       boolean hasValidDisplayName = mPresenter.verifyUserDisplayName(firebaseUser);
+       if (!hasValidDisplayName)
+       {
+           CreateDisplayNameDialogBox(firebaseUser);
+           return;
+       }
 
-        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
-        builder.setView(input);
+        greetUser(firebaseUser);
+        openMainActivity();
 
-        // Set up the buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-                if (Objects.requireNonNull(firebaseUser.getDisplayName()).isEmpty() ||
-                        firebaseUser.getDisplayName().equals("Guest")) {
-
-                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                            .setDisplayName( input.getText().toString() ).build();
-
-                    firebaseUser.updateProfile(profileUpdates);
-
-                    String message = "hello, " + firebaseUser.getDisplayName();
-                    showSnackBarMessage(message);
-                    AppLogger.i(message);
-
-                    mEmailEditText.setText(firebaseUser.getEmail());
-                    mPasswordEditText.setText(firebaseUser.getUid());
-                }
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName( getStringByID(R.string.anonymous_user)  ).build();
-
-                firebaseUser.updateProfile(profileUpdates);
-
-                String message = "hello, " + firebaseUser.getDisplayName();
-                showSnackBarMessage(message);
-                AppLogger.i(message);
-
-                mEmailEditText.setText(firebaseUser.getEmail());
-                mPasswordEditText.setText(firebaseUser.getUid());
-
-                dialog.cancel();
-            }
-        });
-        builder.show();
     }
 
     @Override
     public void OnAuthenticationFailed(Exception e) {
-
         showSnackBarMessage(this.getString(R.string.user_auth_mail_failed) +
                 e.getMessage());
-
     }
+
+
 }

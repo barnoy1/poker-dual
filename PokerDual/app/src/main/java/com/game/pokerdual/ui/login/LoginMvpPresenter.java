@@ -2,6 +2,7 @@ package com.game.pokerdual.ui.login;
 
 import com.game.pokerdual.di.PerActivity;
 import com.game.pokerdual.ui.base.MvpPresenter;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by ron on 9/30/2018.
@@ -17,4 +18,7 @@ public interface LoginMvpPresenter<V extends LoginMvpView> extends MvpPresenter<
 
     void onFacebookLoginClick();
 
+    boolean verifyUserDisplayName(FirebaseUser firebaseUser);
+
+    void UpdateUserDisplayName(FirebaseUser firebaseUser, String dialogBoxInputDisplayName);
 }

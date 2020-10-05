@@ -27,7 +27,7 @@ import com.game.pokerdual.data.DataManager;
 import com.game.pokerdual.di.component.ApplicationComponent;
 import com.game.pokerdual.di.component.DaggerApplicationComponent;
 import com.game.pokerdual.di.module.ApplicationModule;
-import com.game.pokerdual.utils.AppLogger;
+import com.game.pokerdual.utils.Logger;
 import com.google.android.gms.ads.MobileAds;
 
 import java.security.MessageDigest;
@@ -63,7 +63,7 @@ public class MvpApp extends MultiDexApplication {
 
         mApplicationComponent.inject(this);
 
-        AppLogger.init();
+        Logger.init();
 
 
         MobileAds.initialize(this, getString(R.string
@@ -92,12 +92,12 @@ public class MvpApp extends MultiDexApplication {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.FROYO) {
                         hashKey = Base64.encodeToString(md.digest(), Base64.DEFAULT);
                     }
-                    AppLogger.i(hashKey);
+                    Logger.i(hashKey);
                 }
 
             }
             catch (Exception e){
-                AppLogger.i(e.getMessage());
+                Logger.i(e.getMessage());
             }
 
         }

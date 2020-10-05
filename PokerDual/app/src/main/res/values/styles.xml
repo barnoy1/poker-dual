@@ -109,23 +109,10 @@
         <item name="fontPath">fonts/Boogaloo-Regular.ttf</item>
     </style>
 
-    <!--
-    <style name="TextAppearance.Text.Regular" parent="android:TextAppearance">
-        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Regular.ttf</item>
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/popup_background</item>
     </style>
 
-    <style name="TextAppearance.Text.Bold" parent="android:TextAppearance">
-        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Bold.ttf</item>
-    </style>
-
-    <style name="TextAppearance.Text.Light" parent="android:TextAppearance">
-        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Light.ttf</item>
-    </style>
-
-    <style name="TextAppearance.Text.Italic" parent="android:TextAppearance">
-        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Italic.ttf</item>
-    </style>
-    -->
     <style name="TextStyle">
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:layout_marginBottom">2dp</item>

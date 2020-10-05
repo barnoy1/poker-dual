@@ -1,4 +1,4 @@
-package com.game.pokerdual.utils.rx;
+package com.game.pokerdual.utils.SchedulerProvider;
 
 import io.reactivex.Scheduler;
 

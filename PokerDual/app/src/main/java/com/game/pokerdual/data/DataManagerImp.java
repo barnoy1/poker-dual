@@ -13,7 +13,7 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class AppDataManager implements DataManager {
+public class DataManagerImp implements DataManager {
 
 
     private static final String TAG = "AppDataManager";
@@ -22,7 +22,7 @@ public class AppDataManager implements DataManager {
     private final PreferencesHelper mPreferencesHelper;
 
     @Inject
-    public AppDataManager(@ApplicationContext Context context,
+    public DataManagerImp(@ApplicationContext Context context,
                           PreferencesHelper preferencesHelper) {
         mContext = context;
         mPreferencesHelper = preferencesHelper;

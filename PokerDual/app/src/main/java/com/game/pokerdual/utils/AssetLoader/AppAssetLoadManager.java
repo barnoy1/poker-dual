@@ -2,13 +2,13 @@ package com.game.pokerdual.utils.AssetLoader;
 
 import android.annotation.SuppressLint;
 
-import com.game.pokerdual.utils.AppLogger;
+import com.game.pokerdual.utils.Logger;
 import com.game.pokerdual.utils.AssetLoader.InterstitialAdProperties.InterstitialAdProperties;
 import com.game.pokerdual.utils.AssetLoader.ReferenceCounter.ReferenceCounter;
-import com.game.pokerdual.utils.AssetLoader.StorageDownableContent.AppStorageItem;
+import com.game.pokerdual.utils.AssetLoader.StorageDownableContent.AppStorageItemImp;
 import com.game.pokerdual.utils.AssetLoader.StorageDownableContent.StorageItemProperties;
 import com.game.pokerdual.utils.ads.InterstitialAdProvider;
-import com.game.pokerdual.utils.rx.SchedulerProvider;
+import com.game.pokerdual.utils.SchedulerProvider.SchedulerProvider;
 import com.google.android.gms.ads.AdListener;
 
 import java.io.File;
@@ -119,7 +119,7 @@ public class AppAssetLoadManager implements AssetLoadManager {
             public void onAdLoaded() {
                 String message = String.format("onAdLoaded - " +
                         "interstitial add loaded successfully");
-                AppLogger.i(message);
+                Logger.i(message);
                 mReferenceCounter.DecreaseRefCounter();
             }
 
@@ -130,7 +130,7 @@ public class AppAssetLoadManager implements AssetLoadManager {
                         String.format("onAdFailedToLoad - " +
                                 "error code: " +
                                 "%d", errorCode);
-                AppLogger.e(message);
+                Logger.e(message);
 
                 if (fillAdCounter <= FILL_AD_COUNTER_LIMIT) {
                     fillAdCounter++;
@@ -141,7 +141,7 @@ public class AppAssetLoadManager implements AssetLoadManager {
             @Override
             public void onAdClosed() {
                 String message = String.format("onAdClosed");
-                AppLogger.i(message);
+                Logger.i(message);
 
 
                 // load the next interstitialAd
@@ -166,7 +166,7 @@ public class AppAssetLoadManager implements AssetLoadManager {
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
         for (StorageItemProperties storageItemProperties : mStorageItemPropertiesArrayList) {
-            executor.submit(new AppStorageItem(storageItemProperties));
+            executor.submit(new AppStorageItemImp(storageItemProperties));
         }
 
         //shut down the executor service now

@@ -15,7 +15,7 @@ import javax.inject.Singleton;
 
 
 @Singleton
-public class AppPreferencesHelper implements PreferencesHelper {
+public class PreferencesHelperImp implements PreferencesHelper {
 
     private static final String PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE";
     private static final String PREF_KEY_CURRENT_USER_ID = "PREF_KEY_CURRENT_USER_ID";
@@ -28,7 +28,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
     private final SharedPreferences mPrefs;
 
     @Inject
-    public AppPreferencesHelper(@ApplicationContext Context context,
+    public PreferencesHelperImp(@ApplicationContext Context context,
                                 @PreferenceInfo String prefFileName) {
         mPrefs = context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE);
     }

@@ -21,7 +21,7 @@ package com.game.pokerdual.ui.base;
 
 import com.game.pokerdual.data.DataManager;
 import com.game.pokerdual.utils.AssetLoader.AssetLoadManager;
-import com.game.pokerdual.utils.rx.SchedulerProvider;
+import com.game.pokerdual.utils.SchedulerProvider.SchedulerProvider;
 
 import javax.inject.Inject;
 

@@ -20,9 +20,9 @@ import android.content.Context;
 
 import com.game.pokerdual.BuildConfig;
 import com.game.pokerdual.R;
-import com.game.pokerdual.data.AppDataManager;
+import com.game.pokerdual.data.DataManagerImp;
 import com.game.pokerdual.data.DataManager;
-import com.game.pokerdual.data.prefs.AppPreferencesHelper;
+import com.game.pokerdual.data.prefs.PreferencesHelperImp;
 import com.game.pokerdual.data.prefs.PreferencesHelper;
 import com.game.pokerdual.di.ApiInfo;
 import com.game.pokerdual.di.ApplicationContext;
@@ -84,13 +84,13 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    DataManager provideDataManager(AppDataManager appDataManager) {
+    DataManager provideDataManager(DataManagerImp appDataManager) {
         return appDataManager;
     }
 
     @Provides
     @Singleton
-    PreferencesHelper providePreferencesHelper(AppPreferencesHelper appPreferencesHelper) {
+    PreferencesHelper providePreferencesHelper(PreferencesHelperImp appPreferencesHelper) {
         return appPreferencesHelper;
     }
 

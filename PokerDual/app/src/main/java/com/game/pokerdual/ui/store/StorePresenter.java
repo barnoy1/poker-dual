@@ -4,7 +4,7 @@ import com.firebase.authwrapper.manager.ProviderManager;
 import com.game.pokerdual.data.DataManager;
 import com.game.pokerdual.ui.base.BasePresenter;
 import com.game.pokerdual.utils.AssetLoader.AssetLoadManager;
-import com.game.pokerdual.utils.rx.SchedulerProvider;
+import com.game.pokerdual.utils.SchedulerProvider.SchedulerProvider;
 
 import javax.inject.Inject;
 

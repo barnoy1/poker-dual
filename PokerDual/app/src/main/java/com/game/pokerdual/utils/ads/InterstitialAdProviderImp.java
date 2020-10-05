@@ -9,10 +9,10 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import javax.inject.Inject;
 
-public class AppInterstitialAdProvider implements InterstitialAdProvider {
+public class InterstitialAdProviderImp implements InterstitialAdProvider {
 
     //region Fields
-    private final static String TAG = AppInterstitialAdProvider.class.getSimpleName();
+    private final static String TAG = InterstitialAdProviderImp.class.getSimpleName();
 
     private Context context;
     private InterstitialAd interstitialAd;
@@ -24,7 +24,7 @@ public class AppInterstitialAdProvider implements InterstitialAdProvider {
     //region ctor
 
     @Inject
-    public AppInterstitialAdProvider(Context context) {
+    public InterstitialAdProviderImp(Context context) {
 
         this.context = context;
 
@@ -69,9 +69,10 @@ public class AppInterstitialAdProvider implements InterstitialAdProvider {
     public void loadInterstitial() {
 
         AdRequest adRequest = new AdRequest.Builder()
+                /*
                 .addTestDevice(this.context.getString
                         (R.string.android_test_device_id))
-                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+               */
                 .build();
 
         interstitialAd.loadAd(adRequest);

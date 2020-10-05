@@ -117,10 +117,11 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="package_name">com.game.pokerdual</string>
+    <string name="dialog_display_name_title">Hi, What\'s your name?</string>
 
     <!--Login Validation-->
-    <string name="empty_email">Please provide a non empty email.</string>
-    <string name="invalid_email">Please provide a valid email.</string>
+    <string name="empty_email">Please provide valid email.</string>
+    <string name="email_invalid_adderss">Invalid email address</string>
     <string name="empty_password">Please provide a non empty password.</string>
     <string name="email_sent_verifcation_mail">Verification email was sent to your mail address.</string>
     <string name="email_authentication_completed">Email authentication was completed.</string>

@@ -25,7 +25,7 @@ import timber.log.Timber;
  * Created by amitshekhar on 15/02/17.
  */
 
-public class AppLogger {
+public class Logger {
     private static final int STACK_TRACE_FRAME_INDEX = 4;
 
     public static String AssembleMessage(String message)

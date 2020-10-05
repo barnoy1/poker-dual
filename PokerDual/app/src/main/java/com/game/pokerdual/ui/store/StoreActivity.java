@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.game.pokerdual.R;
 import com.game.pokerdual.ui.base.BaseActivity;
-import com.game.pokerdual.utils.AppLogger;
+import com.game.pokerdual.utils.Logger;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -81,11 +81,11 @@ public class StoreActivity extends BaseActivity implements StoreMvpView {
         islandRef.getFile(localFile)
 
                 .addOnSuccessListener(taskSnapshot -> {
-                    AppLogger.e("local tem file created: " + localFile.toString());
+                    Logger.e("local tem file created: " + localFile.toString());
                 })
 
                 .addOnFailureListener(exception -> {
-                    AppLogger.e("failed to create file: " + exception.toString());
+                    Logger.e("failed to create file: " + exception.toString());
                 });
     }
 

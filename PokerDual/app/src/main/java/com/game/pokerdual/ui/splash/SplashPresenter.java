@@ -10,7 +10,7 @@ import com.game.pokerdual.data.json.structs.Elixir;
 import com.game.pokerdual.data.json.structs.Item;
 import com.game.pokerdual.data.json.structs.StoreInventory;
 import com.game.pokerdual.ui.base.BasePresenter;
-import com.game.pokerdual.utils.AppLogger;
+import com.game.pokerdual.utils.Logger;
 import com.game.pokerdual.utils.AssetLoader.AssetLoadManager;
 import com.game.pokerdual.utils.AssetLoader.AssetLoaderProperties;
 import com.game.pokerdual.utils.AssetLoader.AssetLoaderPropertiesBuilder;
@@ -18,7 +18,7 @@ import com.game.pokerdual.utils.AssetLoader.InterstitialAdProperties.Interstitia
 import com.game.pokerdual.utils.AssetLoader.StorageDownableContent.StorageItemProperties;
 import com.game.pokerdual.utils.AssetLoader.StorageDownableContent.StorageItemPropertiesBuilder;
 import com.game.pokerdual.utils.GsonUtils;
-import com.game.pokerdual.utils.rx.SchedulerProvider;
+import com.game.pokerdual.utils.SchedulerProvider.SchedulerProvider;
 import com.google.firebase.storage.FileDownloadTask;
 
 import org.jetbrains.annotations.NotNull;
@@ -130,7 +130,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     private void onAssetLoadComplete(@NotNull Pair<String, File> storageItemFilePair){
         File localFile = storageItemFilePair.second;
 
-        AppLogger.i("local tem file created: " + localFile.toString());
+        Logger.i("local tem file created: " + localFile.toString());
 
         if (localFile.canRead()){
 
@@ -149,13 +149,13 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V>
     }
 
     private void onAssetLoadFailed(@org.jetbrains.annotations.NotNull Exception exception)  {
-        AppLogger.i("local tem file not created:" + exception.toString());
+        Logger.i("local tem file not created:" + exception.toString());
     }
 
     private void onAssetLoadProgressNext(@NotNull FileDownloadTask.TaskSnapshot taskSnapshot){
         // progress percentage
         double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-        AppLogger.i("download in progress" + String.valueOf(progress));
+        Logger.i("download in progress" + String.valueOf(progress));
     }
     //endregion
 

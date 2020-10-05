@@ -21,12 +21,12 @@ import com.game.pokerdual.ui.store.StoreMvpView;
 import com.game.pokerdual.ui.store.StorePresenter;
 import com.game.pokerdual.utils.AssetLoader.AppAssetLoadManager;
 import com.game.pokerdual.utils.AssetLoader.AssetLoadManager;
-import com.game.pokerdual.utils.AssetLoader.ReferenceCounter.AppReferenceCounter;
+import com.game.pokerdual.utils.AssetLoader.ReferenceCounter.AppReferenceCounterImp;
 import com.game.pokerdual.utils.AssetLoader.ReferenceCounter.ReferenceCounter;
-import com.game.pokerdual.utils.ads.AppInterstitialAdProvider;
+import com.game.pokerdual.utils.ads.InterstitialAdProviderImp;
 import com.game.pokerdual.utils.ads.InterstitialAdProvider;
-import com.game.pokerdual.utils.rx.AppSchedulerProvider;
-import com.game.pokerdual.utils.rx.SchedulerProvider;
+import com.game.pokerdual.utils.SchedulerProvider.SchedulerProviderImp;
+import com.game.pokerdual.utils.SchedulerProvider.SchedulerProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -63,13 +63,13 @@ public class ActivityModule {
 
     @Provides
     SchedulerProvider provideSchedulerProvider() {
-        return new AppSchedulerProvider();
+        return new SchedulerProviderImp();
     }
 
     @Provides
     @PerActivity
     InterstitialAdProvider provideInterstitialAdProvider(){
-        return new AppInterstitialAdProvider(mActivity);
+        return new InterstitialAdProviderImp(mActivity);
     }
 
 
@@ -119,7 +119,7 @@ public class ActivityModule {
     @Provides
     @PerActivity
     ReferenceCounter provideAppReferenceCounter(){
-        return new AppReferenceCounter();
+        return new AppReferenceCounterImp();
     }
 
     @Provides

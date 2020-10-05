@@ -10,7 +10,7 @@ import com.game.pokerdual.MvpApp;
 import com.game.pokerdual.data.DataManager;
 import com.game.pokerdual.di.component.DaggerServiceComponent;
 import com.game.pokerdual.di.component.ServiceComponent;
-import com.game.pokerdual.utils.AppLogger;
+import com.game.pokerdual.utils.Logger;
 
 import javax.inject.Inject;
 
@@ -48,13 +48,13 @@ public class SyncService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        AppLogger.d("SyncService started");
+        Logger.d("SyncService started");
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        AppLogger.d("SyncService stopped");
+        Logger.d("SyncService stopped");
         super.onDestroy();
     }
 
