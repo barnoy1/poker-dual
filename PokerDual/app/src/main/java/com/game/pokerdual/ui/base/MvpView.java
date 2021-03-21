@@ -1,6 +1,6 @@
 package com.game.pokerdual.ui.base;
 
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 /**
  * Created by ron on 8/18/2018.

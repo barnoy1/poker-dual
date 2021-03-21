@@ -1,8 +1,8 @@
 package com.game.pokerdual.di.module;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.firebase.authwrapper.manager.ProviderManager;
 import com.firebase.authwrapper.providers.common.properties.ProviderProperties;

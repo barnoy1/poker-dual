@@ -8,7 +8,7 @@
 /captures
 .externalNativeBuild
 
-/google-services.json
+/app/google-services.json
 /app/src/main/res/values/strings.xml
 /.idea/
 ### Android template

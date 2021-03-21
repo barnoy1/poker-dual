@@ -6,8 +6,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
-        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.android.tools.build:gradle:4.0.2'
+        classpath 'com.google.gms:google-services:4.3.5'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -41,7 +41,7 @@ ext {
     minSdkVersion = 16
     targetSdkVersion = 28
     compileSdkVersion = 28
-    buildToolsVersion = '28.0.3'
+    buildToolsVersion = '29.0.2'
 
     // App dependencies
     supportLibraryVersion = '28.0.0'
@@ -55,7 +55,7 @@ ext {
     dagger2Version = '2.22.1'
     rxjava2Version = '2.0.6'
     rxandroidVersion = '2.0.1'
-    butterKnifeVersion = '8.6.0'
+    butterKnifeVersion = '10.0.0'
     greenDaoVersion = '3.2.0'
     placeholderviewVersion = '0.6.1'
     debugDBVersion = '1.0.3'
@@ -67,14 +67,14 @@ ext {
     mockitoVersion = '2.7.1'
 
     //Firebase
-    playServicesAdsVersion = '17.1.3'
-    playServicesAuthVersion = '16.0.1'
-    firebaseCoreVersion = '16.0.8'
-    firebaseAuthVersion = '16.2.1'
+    playServicesAdsVersion = '19.8.0'
+    playServicesAuthVersion = '19.0.0'
+    firebaseCoreVersion = '18.0.2'
+    firebaseAuthVersion = '20.0.3'
     firebaseClientAndroidVersion = '2.5.2'
-    firebaseAdsVersion = '17.2.0'
-    firebaseDataBaseVersion = '16.1.0'
-    firebaseStorageVersion = '16.1.0'
+    firebaseAdsVersion = '19.8.0'
+    firebaseDataBaseVersion = '19.7.0'
+    firebaseStorageVersion = '19.2.1'
 
     // Facebook sdk
     facebookLoginVersion = '4.33.0'

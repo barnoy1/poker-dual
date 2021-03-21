@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PokerDual.iml" filepath="$PROJECT_DIR$/PokerDual.iml" group="PokerDual" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PokerDual-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PokerDual-app.iml" group="PokerDual/app" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="PokerDual/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/poker-dual-PokerDual.iml" filepath="$PROJECT_DIR$/.idea/modules/poker-dual-PokerDual.iml" group="PokerDual" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/poker-dual-PokerDual-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/poker-dual-PokerDual-app.iml" group="PokerDual/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repo-poker-dual-PokerDual.iml" filepath="$PROJECT_DIR$/.idea/modules/repo-poker-dual-PokerDual.iml" group="PokerDual" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PokerDual.iml" filepath="$PROJECT_DIR$/.idea/modules/PokerDual.iml" group="PokerDual" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="PokerDual/app" />
     </modules>
   </component>
 </project>
