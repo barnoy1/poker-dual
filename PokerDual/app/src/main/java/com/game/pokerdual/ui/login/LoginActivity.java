@@ -2,11 +2,9 @@ package com.game.pokerdual.ui.login;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -20,10 +18,6 @@ import com.game.pokerdual.ui.base.BaseActivity;
 import com.game.pokerdual.ui.main.MainActivity;
 import com.game.pokerdual.utils.Logger;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-
-import org.w3c.dom.Notation;
-import org.w3c.dom.Text;
 
 import java.util.Objects;
 

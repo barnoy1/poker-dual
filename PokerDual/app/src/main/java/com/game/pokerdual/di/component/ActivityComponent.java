@@ -3,6 +3,7 @@ package com.game.pokerdual.di.component;
 import com.game.pokerdual.di.PerActivity;
 import com.game.pokerdual.di.module.ActivityModule;
 import com.game.pokerdual.ui.login.LoginActivity;
+import com.game.pokerdual.ui.main.MainActivity;
 import com.game.pokerdual.ui.splash.SplashActivity;
 import com.game.pokerdual.ui.store.StoreActivity;
 
@@ -22,4 +23,5 @@ public interface ActivityComponent {
 
     void inject(StoreActivity activity);
 
+    void inject(MainActivity activity);
 }
